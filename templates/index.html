@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NicePferd - Home</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="{{ url_for('static',filename='src/logo.png') }}" />
+        <link href="{{ url_for('static',filename='styles/main.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <p id="console"></p>
+        <section>
+            <br/>
+            Choose Downloaded Chapter: 
+            <select id="selectChapter" onchange="selectionChanged()">
+                {% for i in data %}
+                    <option value="{{i}}">{{ i.split('!')[0] }} chapter {{ i.split('!')[-1] }}</option>
+                {% endfor %}        
+            </select><br/><br/>
+            
+            <div class="center">
+                <a id="readerLink" href="./scanreader" class="button">
+                    <button id="openReader">Open Reader</button>
+                </a>
+                <button id="deleteChapter" onclick="deleteChapter()">Delete Chapter</button>
+            </div><br/><br/>
+            Download New Chapter : 
+            <br/><input type="text" id="url" placeholder="url">
+            <div id="moreOptions">
+                <input type="text" id="firstUrlSegment" placeholder=" first url segment">
+                <input type="text" id="chapterStart" placeholder=" start">
+                <input type="text" id="chapterEnd" placeholder=" end">
+                <input type="text" id="lastUrlSegment" placeholder=" last url segment">
+            </div>
+            <br/>
+            <a id="showmore" onclick="showMoreShowLess()">Multiple URLs Download</a>
+            <div class="center" id="buttonsToHide">
+                <button onclick="downloadChapter()" id="downloadButton">Download</button>
+                <a href="/"><button id="reload">Reload Chapters</button></a><br/>
+                <select id="baseurlSelect">
+                    {% for i in baseurl.keys() %}
+                        <option value="{{baseurl[i]}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+                <button onclick="setBaseUrl()" id="baseUrlButton">Set Base Url</button>
+            </div>
+            <progress id="progressBar" max="100" value="0" size="100"></progress><br/><br/>
+            <div id="addSerie">
+                <input type="text" id="firstUrlSegmentToAdd" placeholder="first url segment">
+                x
+                <input type="text" id="lastUrlSegmentToAdd" placeholder="last url segment" style="width:5%"><br/>
+                <input type="text" id="mangaNameToAdd" placeholder="Manga name" style="width:45%"><br/>
+                <button onclick="addBaseurl()" id="AddBaseurl">Add</button><br/>
+            </div>
+            <a id="addManga" onclick="showHideAddManga()" style="text-decoration:underline;font-size:0.75rem">Add Base Url</a>
+        </section>
+
+
+    </body>
+    <script id="AJAX" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script id="mainScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
+
+</html>

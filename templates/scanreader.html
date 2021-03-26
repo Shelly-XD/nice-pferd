@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NicePferd - Reader</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="{{ url_for('static',filename='src/logo.png') }}" />
+        <link href="{{ url_for('static',filename='styles/main.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <a href="/"><img style="height:3em" class="home" src="{{ url_for('static',filename='src/home.png') }}" + ></a>
+        <i>{{ mangaid.split('!')[0] }} chapter {{ mangaid.split('!')[-1] }}</i>
+        <div class="entry-content">
+            <div class="entry-content_wrap">
+                <div class="read-container">
+                    <div class="reading-content">
+                        <center>
+                            <div id="scans">
+                                {% for i in range(data | length) %}
+                                <div class="page-break no-gaps"><img class="wp-manga-chapter-img" id="image-{{i}}" src="{{data[i]}}" class="wp-manga-chapter-img"></div>
+                                {% endfor %}
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <center><a href="/scanreader?chapter={{ mangaid.split('!')[0] }}!{{ (mangaid.split('!')[-1] | int )+1 }}"><button>> chapter {{ (mangaid.split('!')[-1] | int ) +1 }}</button></a></center><br/>
+        <a href="/"><img style="height:3em" class="home" src="{{ url_for('static',filename='src/home.png') }}" + ></a>
+        <i>{{ mangaid.split('!')[0] }} chapter {{ mangaid.split('!')[-1] }}</i>
+    </body>
+    <script id="AJAX" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script id="mainScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/scanreader.js') }}"></script>
+
+</html>
