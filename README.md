@@ -19,7 +19,8 @@ Manga scans reader and downloader for when you get offline need Android+Termux p
 
 #### Install dependencies :
 * ubuntu:
-```sudo apt update && apt upgrade
+```
+sudo apt update && apt upgrade
 sudo apt install python3 python3-pip ipython3
 sudo apt install git
 ```
