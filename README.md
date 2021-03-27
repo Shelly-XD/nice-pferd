@@ -24,16 +24,19 @@ sudo apt install python3 python3-pip ipython3
 sudo apt install git
 ```
 * arch:
-```sudo pacman -S python-pip
+```
+sudo pacman -S python-pip
 sudo pacman -S git
 ```
 * termux (android device):
-```pkg install python
+```
+pkg install python
 pkg install git
 ```
 
 #### Install nice-pferd:
-```git clone https://github.com/augustin64/nice-pferd/
+```
+git clone https://github.com/augustin64/nice-pferd/
 cd nice-pferd/
 pip install -r requirements.txt
 ```
