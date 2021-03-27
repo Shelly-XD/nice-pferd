@@ -39,6 +39,7 @@ pip install -r requirements.txt
 ```
 
 #### nice-pferd is ready, to use it just run
-```flask run
+```
+flask run
 ```
 Open `http://localhost:5000` in your favorite webbrowser
