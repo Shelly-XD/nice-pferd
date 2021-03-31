@@ -144,7 +144,7 @@ def get():
         print('Successfully deleted')
 
     if action == 'log':
-        text = requests.args.get('log')
+        text = request.args.get('log')
         print(text)
 
     if action == 'addbaseurl' :
