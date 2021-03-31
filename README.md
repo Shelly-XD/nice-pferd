@@ -37,7 +37,7 @@ pkg install git
 
 #### Install nice-pferd:
 ```
-git clone https://github.com/augustin64/nice-pferd/
+git clone https://github.com/augustin64/nice-pferd.git
 cd nice-pferd/
 pip install -r requirements.txt
 ```
