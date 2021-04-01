@@ -42,6 +42,7 @@ function addBaseurl() {
 function setBaseUrl () {
   var e = document.getElementById("baseurlSelect");
   var baseurl = eval(e.value);
+  mangaId = e.options[e.selectedIndex].text;
   if (moreOptions.style.display === "inline") {
     //Multiple Urls
     document.getElementById("firstUrlSegment").value = baseurl[0];
@@ -54,7 +55,6 @@ function setBaseUrl () {
 
 function downloadChapter () {
     var e = document.getElementById("baseurlSelect")
-    mangaId = e.options[e.selectedIndex].text;
     
     if (document.getElementById("moreOptions").style.display === "inline"){
         console.log("Multiple URLs Download")
@@ -122,3 +122,4 @@ document.getElementById("progressBar").style.visibility = "hidden";
 document.getElementById("buttonsToHide").style.visibility = "visible";
 document.getElementById("moreOptions").style.display="none"
 document.getElementById("addSerie").style.display="none"
+var mangaId = ""
