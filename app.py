@@ -25,7 +25,7 @@ def updateStatus(status,max=100,base=0):
         print('Status: '+ str(round(status,1)) + '%')
 
 
-def download(dl_url,total_dls=1,current_dl=1,mangaId=""):
+def downloadManga(dl_url,total_dls=1,current_dl=1,mangaId=""):
     status=0
     updateStatus(status,max=total_dls*100,base=(current_dl-1)*100)
     dl_url=dl_url.replace("%2F","/")
@@ -110,12 +110,11 @@ def get():
         actionType = request.args.get('type')
 
         if actionType == 'single':
-            print('single download')
             dl_url = request.args.get('url')
             if mangaId == "" :
                 mangaId = ' '.join(dl_url.split('/')[-3].split('-'))
             print(mangaId)
-            download(dl_url,mangaId=mangaId)
+            downloadManga(dl_url,mangaId=mangaId)
             print(dl_url)
 
         elif actionType == 'multiple':
@@ -124,9 +123,12 @@ def get():
             chapterStart = int(request.args.get('start'))
             chapterEnd = int(request.args.get('end'))
 
+            if mangaId == "" :
+                mangaId = ' '.join(firstSegment.split('/')[-2].split('-'))
+
             for i in range(chapterStart,chapterEnd+1):
                 dl_url = firstSegment + str(i) + lastSegment
-                download(dl_url,total_dls=chapterEnd-chapterStart+1,current_dl=i-chapterStart+1,mangaId=mangaId)
+                downloadManga(dl_url,total_dls=chapterEnd-chapterStart+1,current_dl=i-chapterStart+1,mangaId=mangaId)
                 print(dl_url)
 
     if action == 'delete' :
