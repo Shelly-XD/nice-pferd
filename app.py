@@ -10,6 +10,7 @@ import re
 
 app = Flask(__name__)
 
+
 def updateStatus(status,max=100,base=0):
     status=((status+base)/max)*100
 
@@ -19,7 +20,7 @@ def updateStatus(status,max=100,base=0):
     with open("./static/downloads/status","w") as f:
         f.write(str(round(status,2)))
 
-    if status == 100:
+    if status >= 100:
         print('Download complete')
     else :
         print('Status: '+ str(round(status,1)) + '%')
@@ -71,6 +72,66 @@ def downloadManga(dl_url,total_dls=1,current_dl=1,mangaId=""):
         json.dump(data, outfile)
 
 
+def download(request_data):
+    mangaId = request_data.args.get('mangaId')
+    actionType = request_data.args.get('type')
+
+    if actionType == 'single':
+        dl_url = request_data.args.get('url')
+        if mangaId == "" :
+            mangaId = ' '.join(dl_url.split('/')[-3].split('-'))
+        print(mangaId)
+        downloadManga(dl_url,mangaId=mangaId)
+        print(dl_url)
+
+    elif actionType == 'multiple':
+        firstSegment = request_data.args.get('url1')
+        lastSegment = request_data.args.get('url2')
+        chapterStart = int(request_data.args.get('start'))
+        chapterEnd = int(request_data.args.get('end'))
+
+        if mangaId == "" :
+            mangaId = ' '.join(firstSegment.split('/')[-2].split('-'))
+
+        for i in range(chapterStart,chapterEnd+1):
+            dl_url = firstSegment + str(i) + lastSegment
+            downloadManga(dl_url,total_dls=chapterEnd-chapterStart+1,current_dl=i-chapterStart+1,mangaId=mangaId)
+            print(dl_url)
+
+
+def delete(request_data):
+    chapterID = str(request_data.args.get('id'))
+
+    for i in os.listdir('./static/downloads/'+chapterID):
+        os.remove('./static/downloads/'+chapterID+'/'+i)
+        print('removed',('./static/downloads/'+chapterID+'/'+i))
+    os.rmdir('./static/downloads/'+chapterID)
+
+    with open("./static/downloads.json") as json_file:
+        data = json.load(json_file)
+    data.remove(str(chapterID))
+    data.sort()
+
+    with open("./static/downloads.json", 'w') as outfile:
+        json.dump(data, outfile)
+    
+    print('Successfully deleted')
+
+
+def addBaseUrl(request_data):
+    firstSegment = request_data.args.get('firstUrlSegment')
+    lastSegment = request_data.args.get('lastUrlSegment')
+    mangaName = request_data.args.get("mangaName")
+
+    with open("./static/baseurl.json",'r') as f:
+        doc = f.read()
+    baseurl=eval(doc)
+    baseurl[mangaName] = [firstSegment,lastSegment]
+
+    with open("./static/baseurl.json", 'w') as outfile:
+        json.dump(baseurl, outfile)
+
+
 @app.route("/index")
 @app.route("/")
 def home():
@@ -106,65 +167,16 @@ def get():
     action = request.args.get('action')
 
     if action == 'download' :
-        mangaId = request.args.get('mangaId')
-        actionType = request.args.get('type')
-
-        if actionType == 'single':
-            dl_url = request.args.get('url')
-            if mangaId == "" :
-                mangaId = ' '.join(dl_url.split('/')[-3].split('-'))
-            print(mangaId)
-            downloadManga(dl_url,mangaId=mangaId)
-            print(dl_url)
-
-        elif actionType == 'multiple':
-            firstSegment = request.args.get('url1')
-            lastSegment = request.args.get('url2')
-            chapterStart = int(request.args.get('start'))
-            chapterEnd = int(request.args.get('end'))
-
-            if mangaId == "" :
-                mangaId = ' '.join(firstSegment.split('/')[-2].split('-'))
-
-            for i in range(chapterStart,chapterEnd+1):
-                dl_url = firstSegment + str(i) + lastSegment
-                downloadManga(dl_url,total_dls=chapterEnd-chapterStart+1,current_dl=i-chapterStart+1,mangaId=mangaId)
-                print(dl_url)
+        download(request)
 
     if action == 'delete' :
-        chapterID = str(request.args.get('id'))
-
-        for i in os.listdir('./static/downloads/'+chapterID):
-            os.remove('./static/downloads/'+chapterID+'/'+i)
-            print('removed',('./static/downloads/'+chapterID+'/'+i))
-        os.rmdir('./static/downloads/'+chapterID)
-
-        with open("./static/downloads.json") as json_file:
-            data = json.load(json_file)
-        data.remove(str(chapterID))
-        data.sort()
-
-        with open("./static/downloads.json", 'w') as outfile:
-            json.dump(data, outfile)
-        
-        print('Successfully deleted')
+        delete(request)
 
     if action == 'log':
-        text = request.args.get('log')
-        print(text)
+        print(request.args.get('log'))
 
     if action == 'addbaseurl' :
-        firstSegment = request.args.get('firstUrlSegment')
-        lastSegment = request.args.get('lastUrlSegment')
-        mangaName = request.args.get("mangaName")
-
-        with open("./static/baseurl.json",'r') as f:
-            doc = f.read()
-        baseurl=eval(doc)
-        baseurl[mangaName] = [firstSegment,lastSegment]
-
-        with open("./static/baseurl.json", 'w') as outfile:
-            json.dump(baseurl, outfile)
+        addBaseUrl(request)
 
     return action
 
