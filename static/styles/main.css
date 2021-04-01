@@ -70,7 +70,7 @@ section {
 }
 
 progress {
-    width: 33%;
+    width: 60%;
     height: 1.6rem;
     text-align: center;
     visibility: hidden;
