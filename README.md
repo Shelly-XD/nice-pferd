@@ -5,7 +5,7 @@ Manga scans reader and downloader for when you get offline need Android+Termux p
 ## Dependencies :
 #### packages
 * [python](https://www.python.org/)(>=3)
-#### python modules (install them with *pip*)
+#### python modules
 * [flask](https://pypi.org/project/Flask/)
 * [bs4](https://pypi.org/project/bs4/)
 * [requests](https://pypi.org/project/requests/)
