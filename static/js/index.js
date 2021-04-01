@@ -37,6 +37,9 @@ function showHideAddManga() {
 function addBaseurl() {
   url = "/get?action=addbaseurl&firstUrlSegment=" + document.getElementById("firstUrlSegmentToAdd").value+ "&lastUrlSegment=" + document.getElementById("lastUrlSegmentToAdd").value + "&mangaName=" + document.getElementById("mangaNameToAdd").value;
   $.get(url)
+  document.getElementById("firstUrlSegmentToAdd").value = ""  //clear document
+  document.getElementById("lastUrlSegmentToAdd").value = ""
+  document.getElementById("mangaNameToAdd").value = ""
 }
 
 function setBaseUrl () {
