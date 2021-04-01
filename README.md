@@ -24,7 +24,7 @@ sudo apt update && apt upgrade
 sudo apt install python3 python3-pip ipython3
 sudo apt install git
 ```
-* arch:
+* Arch Linux:
 ```
 sudo pacman -S python-pip
 sudo pacman -S git
