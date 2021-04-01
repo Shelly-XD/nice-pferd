@@ -110,7 +110,11 @@ def get():
         actionType = request.args.get('type')
 
         if actionType == 'single':
+            print('single download')
             dl_url = request.args.get('url')
+            if mangaId == "" :
+                mangaId = ' '.join(dl_url.split('/')[-3].split('-'))
+            print(mangaId)
             download(dl_url,mangaId=mangaId)
             print(dl_url)
 
