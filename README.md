@@ -38,12 +38,13 @@ pkg install git
 #### Install nice-pferd:
 ```
 git clone https://github.com/augustin64/nice-pferd.git
-cd nice-pferd/
-pip install -r requirements.txt
+nice-pferd/install.sh
 ```
 
-#### nice-pferd is ready, to use it just run
-```
-flask run
-```
+#### nice-pferd is ready, to use it :
+
+Just run `nice-pferd` every time you want to use it  
 Open `http://localhost:5000` in your favorite webbrowser
+
+### To upgrade your nice-pferd version
+Use `nice-pferd-upgrade`, it will delete all your files and custom URLs but will pull the new commits to your machine
