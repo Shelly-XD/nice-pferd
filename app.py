@@ -10,12 +10,9 @@ import re
 
 app = Flask(__name__)
 
-true, false = True, False
+true, false, null = True, False, None
 
-try :
-    latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
-except :
-    None
+latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
 
 with open('./.git/refs/heads/main','r') as f:
     current_commit_id = f.read()
