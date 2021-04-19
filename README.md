@@ -20,14 +20,14 @@ Manga scans reader and downloader for when you get offline need Android+Termux p
 #### Install dependencies :
 * ubuntu:
 ```
-sudo apt update && apt upgrade
-sudo apt install python3 python3-pip ipython3
-sudo apt install git
+apt update && apt upgrade
+apt install python3 python3-pip ipython3
+apt install git
 ```
 * Arch Linux:
 ```
-sudo pacman -S python-pip
-sudo pacman -S git
+pacman -S python-pip
+pacman -S git
 ```
 * termux (android device):
 ```
