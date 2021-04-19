@@ -12,7 +12,11 @@ app = Flask(__name__)
 
 true, false, null = True, False, None
 
-latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
+try:
+    latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
+except:
+    print(" * Running offline mode")
+    latest_commit_id = "null"
 
 with open('./.git/refs/heads/main','r') as f:
     current_commit_id = f.read().replace('\n','')
@@ -20,7 +24,7 @@ with open('./.git/refs/heads/main','r') as f:
 if current_commit_id == latest_commit_id : running_latest = True
 else : running_latest = False
 
-print('Using latest version:',running_latest)
+print(' * Using latest nice-pferd version:',running_latest)
 
 def updateStatus(status,max=100,base=0):
     status=((status+base)/max)*100
