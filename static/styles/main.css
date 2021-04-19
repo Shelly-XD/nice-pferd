@@ -12,6 +12,12 @@
     text-decoration: underline;
 }
 
+#alerts {
+    padding-left: 5%;
+    background-color: #ffec8c;
+    font-size: 0.9rem;
+}
+
 #addSerie {
     text-align:left;
 }

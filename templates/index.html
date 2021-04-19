@@ -7,6 +7,13 @@
         <link href="{{ url_for('static',filename='styles/main.css') }}" rel="stylesheet">
     </head>
     <body>
+        <header>
+            <div id="alerts">
+                {% if running_latest == False %}
+                    A newer version is available, download it using nice-pferd-upgrade
+                {% endif %}
+            </div>
+        </header>
         <p id="console"></p>
         <section>
             <br/>

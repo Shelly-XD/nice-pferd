@@ -10,6 +10,18 @@ import re
 
 app = Flask(__name__)
 
+true, false = True, False
+
+try :
+    latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
+except :
+    None
+
+with open('./.git/refs/heads/main','r') as f:
+    current_commit_id = f.read()
+
+if current_commit_id == latest_commit_id : running_latest = True
+else : running_latest = False
 
 def updateStatus(status,max=100,base=0):
     status=((status+base)/max)*100
@@ -145,7 +157,7 @@ def home():
     with open("./static/baseurl.json") as f:
         doc = f.read()
     baseurl=eval(doc)
-    return render_template('index.html',data=data,baseurl=baseurl)
+    return render_template('index.html',data=data,baseurl=baseurl, running_latest=running_latest)
 
 @app.route('/scanreader.html')
 @app.route('/scanreader')
