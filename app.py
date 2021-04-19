@@ -15,10 +15,12 @@ true, false, null = True, False, None
 latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
 
 with open('./.git/refs/heads/main','r') as f:
-    current_commit_id = f.read()
+    current_commit_id = f.read().replace('\n','')
 
 if current_commit_id == latest_commit_id : running_latest = True
 else : running_latest = False
+
+print('Using latest version:',running_latest)
 
 def updateStatus(status,max=100,base=0):
     status=((status+base)/max)*100
