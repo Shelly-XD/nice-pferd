@@ -5,6 +5,10 @@
     text-decoration: underline;
 }
 
+#addSerie {
+    display:"none";
+}
+
 #addManga {
     font-size: 0.75rem;
     color: #000;
@@ -93,6 +97,55 @@ button {
     text-align: center;
 }
 
+header{
+    position: absolute;
+    top:0px;
+    left: 15%;
+    width: 70% ;
+    height: 15%;
+    background-color: #f6f6f6;
+    text-align: center;
+    color: #222;
+    font-size: 250%;
+    font-family: Courrier new;
+    font-weight:bold;
+    }
+
+  section{
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    background-color: #f6f6f6 ;
+    text-align:justify;
+    color: #888888;
+    font-size: 90%;
+  }
+  aside{
+    position: absolute;
+    top: 15%;
+    left: 85%;
+    width: 15%;
+    height: 85%;
+    background-color: #f6f6f6;
+    text-align: center;  
+    color: #888;
+    font-size: 90%;
+  }
+
+footer{
+    position: absolute;
+    top: 90%;
+    left: 0%;
+    width: 85% ;
+    height: 10%;
+    background-color: #f6f6f6;
+    text-align: center;  
+    color: #888;;
+    font-size: 75%;
+  }
+
 body {
     font-size: 100%;
     line-height: 1.5;
@@ -137,9 +190,6 @@ body {
 :root {
     --madara-main-color: #eb3349;
 }
-
-
-
 
 .c-blog-post .entry-content .entry-content_wrap .read-container .no-gaps img {
     margin: 0 auto;

@@ -150,17 +150,20 @@ def addBaseUrl(request_data):
 @app.route("/index")
 @app.route("/")
 def home():
+    data = {}
+    
     with open("./static/downloads.json",'r') as f:
         doc = f.read()
-    data = eval(doc)
+    data['manga_list'] = eval(doc)
 
-    if len(data) == 0:
-        data.append(" ")
+    if len(data['manga_list']) == 0:
+        data['manga_list'] = [' ']
 
     with open("./static/baseurl.json") as f:
         doc = f.read()
-    baseurl=eval(doc)
-    return render_template('index.html',data=data,baseurl=baseurl, running_latest=running_latest)
+    data['baseurl'] = eval(doc)
+    data['version_id'] = current_commit_id
+    return render_template('index.html',data=data, running_latest=running_latest)
 
 @app.route('/scanreader.html')
 @app.route('/scanreader')

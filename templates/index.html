@@ -19,7 +19,7 @@
             <br/>
             Choose Downloaded Chapter: 
             <select id="selectChapter" onchange="selectionChanged()">
-                {% for i in data %}
+                {% for i in data['manga_list'] %}
                     <option value="{{i}}">{{ i.split('!')[0] }} chapter {{ i.split('!')[-1] }}</option>
                 {% endfor %}        
             </select><br/><br/>
@@ -44,8 +44,8 @@
                 <button onclick="downloadChapter()" id="downloadButton">Download</button>
                 <a href="/"><button id="reload">Reload Chapters</button></a><br/>
                 <select id="baseurlSelect">
-                    {% for i in baseurl.keys() %}
-                        <option value="{{baseurl[i]}}">{{i}}</option>
+                    {% for i in data['baseurl'].keys() %}
+                        <option value="{{data['baseurl'][i]}}">{{i}}</option>
                     {% endfor %}
                 </select>
                 <button onclick="setBaseUrl()" id="baseUrlButton">Set Base Url</button>
@@ -63,6 +63,11 @@
 
 
     </body>
+    <footer>
+        <a href="https://github.com/augustin64/nice-pferd/issues/" target="_blank" rel="noopener noreferrer">report a bug</a>
+        <br/>build:{{ data['version_id'] }}
+    </footer>
+    
     <script id="AJAX" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
     <script id="mainScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
 
