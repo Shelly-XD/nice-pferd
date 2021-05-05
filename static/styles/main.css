@@ -48,23 +48,21 @@ section {
     font-size: 90%;
 }
 footer{
-    position: absolute;
-    top: 90%;
-    left: 0%;
-    width: 85% ;
-    height: 10%;
     background-color: #f6f6f6;
     text-align: center;  
     color: #888;;
-    font-size: 75%;
+    font-size: 65%;
+    flex: 0 0 50px;
+    margin-top: auto;
 }
 body {
-    font-size: 100%;
+    display:flex;
+    flex-direction:column;
+    min-height: 100vh;
     line-height: 1.5;
     color: #888888;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: 2000;
-    text-align: left;
     font-size: 20px;
     line-height: 1.4;
 	color:dark;
