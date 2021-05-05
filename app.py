@@ -147,6 +147,20 @@ def addBaseUrl(request_data):
         json.dump(baseurl, outfile)
 
 
+def get_changelog(current_commit_id):
+    url = 'https://api.github.com/repos/augustin64/nice-pferd/commits/main'
+    changelog = []
+    data = {'sha':""}
+    while current_commit_id != data['sha']:
+        data = eval(requests.get(url).text)
+        url = data['parents'][0]['url']
+        changelog.append(data['commit']['message'])
+
+    changelog = changelog[:-1]
+    changelog.reverse
+    
+    return changelog
+
 @app.route("/index")
 @app.route("/")
 def home():
@@ -163,7 +177,12 @@ def home():
         doc = f.read()
     data['baseurl'] = eval(doc)
     data['version_id'] = current_commit_id
-    return render_template('index.html',data=data, running_latest=running_latest)
+    data['running_latest'] = running_latest
+    if not data['running_latest'] :
+        data['changelog'] = get_changelog(current_commit_id)
+        data['changelog'] = '\\n'.join(data['changelog'])
+
+    return render_template('index.html',data=data)
 
 @app.route('/scanreader.html')
 @app.route('/scanreader')

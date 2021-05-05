@@ -10,8 +10,8 @@
     <body>
         <header>
             <div id="alerts">
-                {% if running_latest == False %}
-                    A newer version is available, download it using nice-pferd-upgrade
+                {% if data['running_latest'] == False %}
+                    A newer version is available <a onclick="changelog()"><u>changelog</u></a>
                 {% endif %}
             </div>
         </header>
@@ -71,5 +71,10 @@
     
     <script id="AJAX" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
     <script id="mainScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
+    <script type="text/javascript">
+        function changelog() {
+            alert("{{ data['changelog'] }}")
+        }
+    </script>
 
 </html>
