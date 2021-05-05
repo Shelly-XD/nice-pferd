@@ -1,7 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>404 Not Found</title><link rel="icon" type="image/png" href="{{ url_for('static',filename='src/logo.png') }}" />
-</head><body><h1>Not Found</h1>
-<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
-<a href="/"><img style="height:2em" class="home" src="{{ url_for('static',filename='src/home.png') }}" + ></a>Return Home
-</body></html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>NicePferd - 404 Not Found</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='src/logo.png') }}" />
+    <link href="{{ url_for('static',filename='styles/main.css') }}" rel="stylesheet">
+</head>
+<body>
+    <h1>Not Found</h1>
+    <p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+    <div><a href="/">
+        <button class="home">
+            <img src="{{ url_for('static',filename='src/home.png') }}" style="max-width:20px;">
+                Return Home
+        </button>
+    </a></div>
+</body>
+</html>
