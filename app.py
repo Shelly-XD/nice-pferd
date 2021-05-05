@@ -12,17 +12,25 @@ app = Flask(__name__)
 
 true, false, null = True, False, None
 
-try:
-    latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main").text)['sha']
-except:
-    print(" * Running offline mode")
-    latest_commit_id = "null"
+headers = {'User-Agent':'NicePferd Client', 'From':'https://github.com/augustin64/nice-pferd'}
 
 with open('./.git/refs/heads/main','r') as f:
     current_commit_id = f.read().replace('\n','')
 
-if current_commit_id == latest_commit_id : running_latest = True
-else : running_latest = False
+try:
+    latest_commit_id = eval(requests.get("https://api.github.com/repos/augustin64/nice-pferd/commits/main",headers=headers).text)['sha']
+    if current_commit_id == latest_commit_id : 
+        running_latest = True
+    else : 
+        running_latest = False
+except:
+    print(" * Running offline mode")
+    latest_commit_id = "null"
+    running_latest = True
+
+
+
+
 
 print(' * Using latest nice-pferd version:',running_latest)
 
@@ -152,13 +160,13 @@ def get_changelog(current_commit_id):
     changelog = []
     data = {'sha':""}
     while current_commit_id != data['sha']:
-        data = eval(requests.get(url).text)
+        data = eval(requests.get(url,headers=headers).text)
         url = data['parents'][0]['url']
         changelog.append(data['commit']['message'])
 
     changelog = changelog[:-1]
     changelog.reverse
-    
+
     return changelog
 
 @app.route("/index")
@@ -178,6 +186,7 @@ def home():
     data['baseurl'] = eval(doc)
     data['version_id'] = current_commit_id
     data['running_latest'] = running_latest
+    print(running_latest)
     if not data['running_latest'] :
         data['changelog'] = get_changelog(current_commit_id)
         data['changelog'] = '\\n'.join(data['changelog'])
