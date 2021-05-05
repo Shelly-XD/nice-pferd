@@ -1,0 +1,22 @@
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-style: none;
+}
+.c-blog-post .entry-content .entry-content_wrap .read-container .no-gaps img {
+    margin: 0 auto;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+}
+.c-blog-post .entry-content .entry-content_wrap .read-container img {
+    cursor: pointer;
+}
+.c-blog-post .entry-content .entry-content_wrap .read-container img {
+    margin: 0 auto 20px;
+}
+.home {
+    max-width: 75px;
+}

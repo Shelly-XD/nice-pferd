@@ -1,0 +1,53 @@
+input {
+    width: 50%
+}
+progress {
+    width: 60%;
+    height: 1.6rem;
+    text-align: center;
+    visibility: hidden;
+}
+progress:before {
+    content: attr(data-label);
+    font-size: 0.8em;
+    vertical-align: 0;
+    position:absolute;
+    left:0;
+    right:0;
+}
+#alerts {
+    padding-left: 5%;
+    background-color: #ffec8c;
+    font-size: 0.9rem;
+}
+#showmore {
+    font-size: 0.75rem;
+    color: #000;
+    text-align: right;
+    text-decoration: underline;
+}
+#chapterStart {
+    width: 4%
+}
+#chapterEnd {
+    width: 4%
+}
+#moreOptions {
+    display: none;
+}
+#addSerie {
+    text-align:left;
+    display:none;
+}
+#firstUrlSegment {
+    width: 50%
+}
+#lastUrlSegment {
+    width: 20%
+}
+#addManga {
+    font-size: 0.75rem;
+    color: #000;
+    text-align: right;
+    text-decoration: underline;
+}

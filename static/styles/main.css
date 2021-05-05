@@ -1,91 +1,8 @@
-#showmore {
-    font-size: 0.75rem;
-    color: #000;
-    text-align: right;
-    text-decoration: underline;
-}
-
-#addSerie {
-    display:"none";
-}
-
-#addManga {
-    font-size: 0.75rem;
-    color: #000;
-    text-align: right;
-    text-decoration: underline;
-}
-
-#alerts {
-    padding-left: 5%;
-    background-color: #ffec8c;
-    font-size: 0.9rem;
-}
-
-#addSerie {
-    text-align:left;
-}
-
-#moreOptions {
-    display: none;
-}
-
-#firstUrlSegment {
-    width: 50%
-}
-
-#chapterStart {
-    width: 4%
-}
-
-#chapterEnd {
-    width: 4%
-}
-
-#lastUrlSegment {
-    width: 20%
-}
-
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-input {
-    width: 50%
-}
-
-:root {
-    overflow-y: scroll;
-    scrollbar-color: lightgrey white;
-    scrollbar-width: thin;
-}
-
-progress:before {
-    content: attr(data-label);
-    font-size: 0.8em;
-    vertical-align: 0;
-    position:absolute;
-    left:0;
-    right:0;
-}
-
-section {
-		position : absolute ;
-		width : 80%;
-		height : 100%;
-		top : 10%;
-		left : 20% ;
-}
-
-progress {
-    width: 60%;
-    height: 1.6rem;
-    text-align: center;
-    visibility: hidden;
-}
-
 button {
     max-width: 320px;
     padding: 4px 20px;
@@ -96,33 +13,30 @@ button {
     font-size: 18px;
     text-align: center;
 }
-
-header{
+header {
     position: absolute;
     top:0px;
     left: 15%;
     width: 70% ;
-    height: 15%;
+    height: 10%;
     background-color: #f6f6f6;
     text-align: center;
     color: #222;
     font-size: 250%;
     font-family: Courrier new;
     font-weight:bold;
-    }
-
-  section{
+}
+section {
     position: absolute;
-    top: 15%;
-    left: 15%;
-    width: 70%;
-    height: 70%;
+    top: 10%;
+    left:10%;
+    height: 80%;
     background-color: #f6f6f6 ;
     text-align:justify;
     color: #888888;
     font-size: 90%;
-  }
-  aside{
+}
+  aside {
     position: absolute;
     top: 15%;
     left: 85%;
@@ -132,8 +46,7 @@ header{
     text-align: center;  
     color: #888;
     font-size: 90%;
-  }
-
+}
 footer{
     position: absolute;
     top: 90%;
@@ -144,8 +57,7 @@ footer{
     text-align: center;  
     color: #888;;
     font-size: 75%;
-  }
-
+}
 body {
     font-size: 100%;
     line-height: 1.5;
@@ -186,35 +98,13 @@ body {
     --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
-
 :root {
     --madara-main-color: #eb3349;
+    overflow-y: scroll;
+    scrollbar-color: lightgrey white;
+    scrollbar-width: thin;
 }
 
-.c-blog-post .entry-content .entry-content_wrap .read-container .no-gaps img {
-    margin: 0 auto;
-        margin-top: 0px;
-        margin-right: auto;
-        margin-bottom: 0px;
-        margin-left: auto;
-}
-.c-blog-post .entry-content .entry-content_wrap .read-container img {
-    cursor: pointer;
-}
-.c-blog-post .entry-content .entry-content_wrap .read-container img {
-    margin: 0 auto 20px;
-}
-img {
-    max-width: 100%;
-    height: auto;
-}
-img {
-    border-style: none;
-}
-img {
-    vertical-align: middle;
-    border-style: none;
-}
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -222,13 +112,4 @@ img {
 }
 *, ::after, ::before {
     box-sizing: border-box;
-}
-.c-blog-post .entry-content .entry-content_wrap .read-container {
-    text-align: center;
-}
-.c-blog-post .entry-content .entry-content_wrap {
-    line-height: 2.14285714;
-}
-.c-blog-post .entry-content {
-    color: #333;
 }
