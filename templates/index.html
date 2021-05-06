@@ -6,16 +6,18 @@
         <link rel="icon" type="image/png" href="{{ url_for('static',filename='src/logo.png') }}" />
         <link href="{{ url_for('static',filename='styles/main.css') }}" rel="stylesheet">
         <link href="{{ url_for('static',filename='styles/index.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static',filename='styles/main.dark.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static',filename='styles/index.dark.css') }}" rel="stylesheet">
     </head>
     <body>
-        <header>
+        <header id="header">
             <div id="alerts">
                 {% if data['running_latest'] == False %}
                     A newer version is available <a onclick="changelog()"><u>changelog</u></a>
                 {% endif %}
             </div>
-        </header>
-        <p id="console"></p>
+            <a class="click" onclick="darkmode()">Toggle dark mode</a>
+        </header>    
         <section>
             <br/>
             Choose Downloaded Chapter: 
@@ -40,7 +42,7 @@
                 <input type="text" id="lastUrlSegment" placeholder=" last url segment">
             </div>
             <br/>
-            <a id="showmore" onclick="showMoreShowLess()">Multiple URLs Download</a>
+            <a id="showmore" onclick="showMoreShowLess()" class="click">Multiple URLs Download</a>
             <div class="center" id="buttonsToHide">
                 <button onclick="downloadChapter()" id="downloadButton">Download</button>
                 <a href="/"><button id="reload">Reload Chapters</button></a><br/>
@@ -59,10 +61,8 @@
                 <input type="text" id="mangaNameToAdd" placeholder="Manga name" style="width:45%"><br/>
                 <button onclick="addBaseurl()" id="AddBaseurl">Add</button><br/>
             </div>
-            <a id="addManga" onclick="showHideAddManga()" style="text-decoration:underline;font-size:0.75rem">Add Base Url</a>
+            <a class="click" id="addManga" onclick="showHideAddManga()">Add Base Url</a>
         </section>
-
-
     </body>
     <footer>
         <a href="https://github.com/augustin64/nice-pferd/issues/" target="_blank" rel="noopener noreferrer">report a bug</a>

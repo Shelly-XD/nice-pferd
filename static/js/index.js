@@ -110,7 +110,21 @@ function updateBar(){
       }
 }
 
-
+function darkmode() {
+  document.body.classList.toggle("dark-mode");
+  for (var i of document.getElementsByTagName("header")) {
+    i.classList.toggle("header-dark-mode")
+  }
+  for (var i of document.getElementsByTagName("button")) {
+    i.classList.toggle("button-dark-mode")
+  }
+  for (var i of document.getElementsByTagName("a")) {
+    i.classList.toggle("a-dark-mode")
+  }
+  document.getElementById("alerts").classList.toggle("alerts-dark-mode");
+  document.getElementById("addManga").classList.toggle("click-dark-mode");
+  document.getElementById("showmore").classList.toggle("click-dark-mode");
+}
 
 function deleteChapter() {
     var e = document.getElementById("selectChapter");

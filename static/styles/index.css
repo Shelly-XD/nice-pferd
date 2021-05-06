@@ -17,14 +17,8 @@ progress:before {
 }
 #alerts {
     padding-left: 5%;
-    background-color: #ffec8c;
     font-size: 0.9rem;
-}
-#showmore {
-    font-size: 0.75rem;
-    color: #000;
-    text-align: right;
-    text-decoration: underline;
+    background-color: #ffec8c;
 }
 #chapterStart {
     width: 4%
@@ -45,9 +39,9 @@ progress:before {
 #lastUrlSegment {
     width: 20%
 }
-#addManga {
+.click {
     font-size: 0.75rem;
-    color: #000;
     text-align: right;
     text-decoration: underline;
+    color: #000;
 }
