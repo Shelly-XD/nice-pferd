@@ -1,10 +1,12 @@
 # nice-pferd
-Manga scans reader and downloader for when you get offline need Android+Termux phone or any Computer running python3
+Manga scans reader and downloader
 
 
 ## Dependencies :
-#### packages
-* [python](https://www.python.org/)(>=3)
+#### Packages
+* [python](https://www.python.org/)
+* [git](https://git-scm.com/)
+
 #### python modules
 * [flask](https://pypi.org/project/Flask/)
 * [bs4](https://pypi.org/project/bs4/)
