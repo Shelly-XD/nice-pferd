@@ -55,6 +55,7 @@ Use `nice-pferd-upgrade`, it will delete all your files and custom URLs but will
 + Updates Notifier (includes changelogs)
 + Multiple mangas downloader
 + Easier installation script
++ Free & Open Source (feel free to contribute)
 
 ### [WIP] 
 + Dark/Light themes
