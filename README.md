@@ -10,7 +10,7 @@ Manga scans reader and downloader for when you get offline need Android+Termux p
 * [bs4](https://pypi.org/project/bs4/)
 * [requests](https://pypi.org/project/requests/)
 
-+any webBrowser
+\+ any webBrowser
 
 ## Supported Websites : (ask me for more if you want, I will add the support)
 * [kissmanga.in](https://kissmanga.in/)
@@ -48,3 +48,16 @@ Open `http://localhost:5000` in your favorite webbrowser
 
 ### To upgrade your nice-pferd version
 Use `nice-pferd-upgrade`, it will delete all your files and custom URLs but will pull the new commits to your machine
+
+## Features :
++ Updates Notifier (includes changelogs)
++ Multiple mangas downloader
++ Easier installation script
+
+### [WIP] 
++ Dark/Light themes
+
+### [TODO]
++ Store files outside of the GitHub project (so files aren't wiped out when nicepferd is upgraded)
++ Add more websites
++ Configuration file
