@@ -56,9 +56,10 @@ Use `nice-pferd-upgrade`, it will delete all your files and custom URLs but will
 + Multiple mangas downloader
 + Easier installation script
 + Free & Open Source (feel free to contribute)
++ Dark/Light themes
 
 ### [WIP] 
-+ Dark/Light themes
++ support for [mangamelon](http://mangamelon.com)
 
 ### [TODO]
 + Store files outside of the GitHub project (so files aren't wiped out when nicepferd is upgraded)
