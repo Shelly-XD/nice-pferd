@@ -69,7 +69,8 @@
     </footer>
     
     <script id="AJAX" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-    <script id="mainScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
+    <script id="indexScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
+    <script id="mainScript" language="JavaScript" type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
     <script type="text/javascript">
         function changelog() {
             alert("{{ data['changelog'] }}")
