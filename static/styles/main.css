@@ -6,9 +6,9 @@
 button {
     max-width: 320px;
     padding: 4px 10px;
-    border-radius: 6px;
+    border-radius: 5px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
     background-color: #007aff;
     color: white;
