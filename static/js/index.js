@@ -116,20 +116,21 @@ function downloadChapter () {
 
 function updateBar(){
     var versionUpdate = (new Date()).getTime();
-    Promise.all([
-        fetch('/static/downloads/status?v='+versionUpdate).then(x => x.text()),
-      ]).then(([sampleResp]) => {
-        status=sampleResp
-        document.getElementById("progressBar").value = sampleResp;
-      });
-      if (status>=100){
+    sendJSON({
+      "action":"status",
+      "data":{}
+    },function (status) {
+      console.log(status)
+      if (status < 100) {
+        document.getElementById("progressBar").value = status;
+        setTimeout(() => {  updateBar(); }, 1000);
+      } else {
+        document.getElementById("progressBar").value = 100;
         setTimeout(() => {  console.log("Download complete"); }, 1000);
-        
         document.getElementById("progressBar").style.visibility = "hidden";
         document.getElementById("buttonsToHide").style.visibility = "visible";
-      } else {
-        setTimeout(() => {  updateBar(); }, 1000);
       }
+    })
 }
 
 function darkmode() {

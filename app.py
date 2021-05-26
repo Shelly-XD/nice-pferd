@@ -15,6 +15,7 @@ app = Flask(__name__)
 true, false, null = True, False, None
 
 headers = {'User-Agent':'NicePferd Client', 'From':'https://github.com/augustin64/nice-pferd'}
+status = 0
 
 with open('./.git/refs/heads/main','r') as f:
     current_commit_id = f.read().replace('\n','')
@@ -32,34 +33,39 @@ except:
 
 print(' * Using latest nice-pferd version:',running_latest)
 
-def updateStatus(status,max=100,base=0):
+def updateStatus(max=100,base=0):
+    global status
     status=((status+base)/max)*100
 
-    if not os.path.exists("./static/downloads"):
-        os.mkdir("./static/downloads")
+    """if not os.path.exists("./static/downloads"):
+        os.mkdir("./static/downloads")"""
 
-    with open("./static/downloads/status","w") as f:
-        f.write(str(round(status,2)))
+    """with open("./static/downloads/status","w") as f:
+        f.write(str(round(status,2)))"""
 
     if status >= 100:
         print('Download complete')
     else :
         print('Status: '+ str(round(status,1)) + '%')
 
+def get_status(request_data):
+    global status
+    return(str(status))
 
 def downloadManga(dl_url,total_dls=1,current_dl=1,mangaId=""):
+    global status
     status=0
-    updateStatus(status,max=total_dls*100,base=(current_dl-1)*100)
+    updateStatus(max=total_dls*100,base=(current_dl-1)*100)
     dl_url=dl_url.replace("%2F","/")
     chapter = dl_url.split("/")[-2].split("-")[-1]
     r=requests.get(dl_url)
     status+=10
-    updateStatus(status,max=total_dls*100,base=(current_dl-1)*100)
+    updateStatus(max=total_dls*100,base=(current_dl-1)*100)
     soup = BeautifulSoup(r.content, 'html.parser')
     images = soup.find_all("img", {"class": "wp-manga-chapter-img"})
     urls = [(i['src'].replace('\n','').replace('\t',''),i['id']) for i in images]
     status+=10
-    updateStatus(status,max=total_dls*100,base=(current_dl-1)*100)
+    updateStatus(max=total_dls*100,base=(current_dl-1)*100)
 
     try :
         os.mkdir("./static/downloads/" + mangaId + "!" + chapter)
@@ -81,8 +87,9 @@ def downloadManga(dl_url,total_dls=1,current_dl=1,mangaId=""):
                     break
                 handle.write(block)
         status+=(1/len(urls))*80
-        updateStatus(status,max=total_dls*100,base=(current_dl-1)*100)
-    updateStatus(current_dl*100,max=total_dls*100,base=(current_dl-1)*100)
+        updateStatus(max=total_dls*100,base=(current_dl-1)*100)
+    status = current_dl*100
+    updateStatus(max=total_dls*100,base=(current_dl-1)*100)
 
     with open("./static/downloads.json") as json_file:
         data = json.load(json_file)
@@ -116,6 +123,8 @@ def download(request_data):
         for i in range(chapterStart,chapterEnd+1):
             dl_url = firstSegment + str(i) + lastSegment
             downloadManga(dl_url,total_dls=chapterEnd-chapterStart+1,current_dl=i-chapterStart+1,mangaId=mangaId)
+    
+    return ('Downloaded')
 
 
 def delete(request_data):
@@ -223,14 +232,14 @@ def get():
 @app.route('/post', methods = ['POST'])
 def postJsonHandler():
     actions = {
-        "download":download
+        "download":download,
+        "status":get_status,
     }
     if (request.is_json) :
         content = request.get_json()
         action = content['action']
         data = content['data']
-        actions[action](data)
-        return 'JSON posted'
+        return actions[action](data)
 
 
 
