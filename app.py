@@ -1,3 +1,5 @@
+#!/bin/python3
+
 from flask import Flask, render_template, redirect, url_for,request
 from flask import make_response
 from bs4 import BeautifulSoup
@@ -27,10 +29,6 @@ except:
     print(" * Running offline mode")
     latest_commit_id = "null"
     running_latest = True
-
-
-
-
 
 print(' * Using latest nice-pferd version:',running_latest)
 
@@ -96,6 +94,7 @@ def downloadManga(dl_url,total_dls=1,current_dl=1,mangaId=""):
 
 
 def download(request_data):
+    print(request_data)
     mangaId = request_data.args.get('mangaId')
     actionType = request_data.args.get('type')
 
@@ -103,9 +102,7 @@ def download(request_data):
         dl_url = request_data.args.get('url')
         if mangaId == "" :
             mangaId = ' '.join(dl_url.split('/')[-3].split('-'))
-        print(mangaId)
         downloadManga(dl_url,mangaId=mangaId)
-        print(dl_url)
 
     elif actionType == 'multiple':
         firstSegment = request_data.args.get('url1')
@@ -119,7 +116,6 @@ def download(request_data):
         for i in range(chapterStart,chapterEnd+1):
             dl_url = firstSegment + str(i) + lastSegment
             downloadManga(dl_url,total_dls=chapterEnd-chapterStart+1,current_dl=i-chapterStart+1,mangaId=mangaId)
-            print(dl_url)
 
 
 def delete(request_data):
@@ -127,7 +123,6 @@ def delete(request_data):
 
     for i in os.listdir('./static/downloads/'+chapterID):
         os.remove('./static/downloads/'+chapterID+'/'+i)
-        print('removed',('./static/downloads/'+chapterID+'/'+i))
     os.rmdir('./static/downloads/'+chapterID)
 
     with open("./static/downloads.json") as json_file:
@@ -186,7 +181,6 @@ def home():
     data['baseurl'] = eval(doc)
     data['version_id'] = current_commit_id
     data['running_latest'] = running_latest
-    print(running_latest)
     if not data['running_latest'] :
         data['changelog'] = get_changelog(current_commit_id)
         data['changelog'] = '\\n'.join(data['changelog'])
@@ -203,7 +197,6 @@ def scanreader():
         raw_list = [int(re.match(pattern,i).group(1)) for i in os.listdir('./static/downloads/'+ chapter)]
         raw_list.sort()
         sorted_paths = [('./static/downloads/' + chapter + '/' + 'image-'+ str(i) +'.jpg' ) for i in raw_list]
-        print(sorted_paths)
         return render_template('scanreader.html',data=sorted_paths,mangaid=chapter)
     else:
         return render_template('404.html')
