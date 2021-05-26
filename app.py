@@ -95,20 +95,20 @@ def downloadManga(dl_url,total_dls=1,current_dl=1,mangaId=""):
 
 def download(request_data):
     print(request_data)
-    mangaId = request_data.args.get('mangaId')
-    actionType = request_data.args.get('type')
+    mangaId = request_data['mangaId']
+    actionType = request_data['type']
 
     if actionType == 'single':
-        dl_url = request_data.args.get('url')
+        dl_url = request_data['url']
         if mangaId == "" :
             mangaId = ' '.join(dl_url.split('/')[-3].split('-'))
         downloadManga(dl_url,mangaId=mangaId)
 
     elif actionType == 'multiple':
-        firstSegment = request_data.args.get('url1')
-        lastSegment = request_data.args.get('url2')
-        chapterStart = int(request_data.args.get('start'))
-        chapterEnd = int(request_data.args.get('end'))
+        firstSegment = request_data['url1']
+        lastSegment = request_data['url2']
+        chapterStart = int(request_data['start'])
+        chapterEnd = int(request_data['end'])
 
         if mangaId == "" :
             mangaId = ' '.join(firstSegment.split('/')[-2].split('-'))
@@ -218,6 +218,19 @@ def get():
         addBaseUrl(request)
 
     return action
+
+# get json posted data
+@app.route('/post', methods = ['POST'])
+def postJsonHandler():
+    actions = {
+        "download":download
+    }
+    if (request.is_json) :
+        content = request.get_json()
+        action = content['action']
+        data = content['data']
+        actions[action](data)
+        return 'JSON posted'
 
 
 

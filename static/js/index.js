@@ -69,9 +69,21 @@ function downloadChapter () {
         var chapterEnd = (e.value);
         var e = document.getElementById("lastUrlSegment");
         var lastUrlSegment = (e.value);
-        console.log("typeUrl:"+firstUrlSegment + "0" + lastUrlSegment)
-        url = "/get?action=download&type=multiple&url1=" + firstUrlSegment + "&url2=" + lastUrlSegment + "&start=" + chapterStart + "&end=" + chapterEnd + "&mangaId=" + mangaId;
-        $.get(url);
+
+        sendJSON({
+          "action":"download",
+          "data":{
+            "type":"multiple",
+            "url1":firstUrlSegment,
+            "url2":lastUrlSegment,
+            "start":chapterStart,
+            "end":chapterEnd,
+            "mangaId":mangaId
+          }
+        },function (data) {
+          console.log(data);
+        });
+
         var status = 0
         document.getElementById("progressBar").style.visibility = "visible";
         document.getElementById("buttonsToHide").style.visibility = "hidden";
@@ -83,7 +95,17 @@ function downloadChapter () {
         var selectUrl = (e.value);
         if (selectUrl != "") {
             url = "/get?action=download&type=single&url=" + selectUrl + "&mangaId=" + mangaId;
-            $.get(url);
+            sendJSON({
+              "action":"download",
+              "data":{
+                "type":"single",
+                "url":selectUrl,
+                "mangaId":mangaId
+              }
+            },function (data) {
+              console.log(data);
+            });
+
             var status = 0
             document.getElementById("progressBar").style.visibility = "visible";
             document.getElementById("buttonsToHide").style.visibility = "hidden";
